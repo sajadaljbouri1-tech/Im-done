@@ -1,5 +1,6 @@
 body {
-  background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+  background: url('https://images.unsplash.com/photo-1582719478250-d23ef4f0c38b?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+  background-size: cover;
   color: white;
   font-family: Arial, sans-serif;
   text-align: center;

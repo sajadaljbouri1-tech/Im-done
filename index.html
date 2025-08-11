@@ -1,24 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AstroLaunch - Coming Soon</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>AstroLaunch.xyz — Countdown</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: radial-gradient(circle at 50% 20%, #233466 0%, #0a0a1d 70%, #07051d 100%);
+      min-height: 100vh;
+      min-height: 100dvh;
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      font-family: 'Orbitron', Arial, sans-serif;
+      color: #e7faff;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .content-wrapper {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      box-sizing: border-box;
+      padding-top: 6vh;
+      padding-bottom: 9vh;
+    }
+    h1 {
+      font-size: 2.7rem;
+      letter-spacing: 0.07em;
+      color: #00eaff;
+      text-shadow: 0 0 18px #00eaff99, 0 0 2px #fff;
+      margin-bottom: 1.2rem;
+      margin-top: 0;
+    }
+    .countdown-box {
+      background: rgba(16,21,42,0.92);
+      border: 2px solid #00eaff33;
+      border-radius: 24px;
+      padding: 2.5rem 3.5rem;
+      text-align: center;
+      box-shadow: 0 0 36px #00eaff33;
+      margin-bottom: 2rem;
+    }
+    .countdown-time {
+      font-size: 2.2rem;
+      color: #50fa7b;
+      text-shadow: 0 0 10px #00eaff99;
+      letter-spacing: 0.12em;
+      margin-top: 1.2rem;
+      margin-bottom: 0.4rem;
+    }
+    .neon-glow {
+      color: #00eaff;
+      text-shadow: 0 0 12px #00eaff99;
+    }
+    .desc {
+      color: #b1f3f3;
+      font-size: 1.14rem;
+      margin-bottom: 1.5rem;
+      margin-top: 1.2rem;
+    }
+    .astro-logo {
+      font-size: 4.2rem;
+      margin-bottom: 0.8rem;
+      text-shadow: 0 0 28px #00eaff99;
+    }
+    .discord-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6em;
+      background: linear-gradient(90deg, #5865F2, #233466 85%);
+      color: #fff;
+      font-size: 1.18rem;
+      font-family: inherit;
+      border: none;
+      border-radius: 18px;
+      padding: 0.73em 2.1em;
+      cursor: pointer;
+      box-shadow: 0 0 12px #5865f299;
+      text-decoration: none;
+      margin-top: 0.5em;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.12s;
+      font-weight: 600;
+    }
+    .discord-btn:hover, .discord-btn:focus {
+      background: linear-gradient(90deg, #233466 65%, #5865F2 100%);
+      box-shadow: 0 0 28px #5865f2cc;
+      transform: translateY(-2px) scale(1.04);
+      outline: none;
+    }
+    .stars {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 40%, transparent 0%, transparent 60%, rgba(10,10,29,0.75) 100%);
+    }
+    .star {
+      position: absolute;
+      background: #43e9ff;
+      border-radius: 50%;
+      opacity: 0.18;
+      filter: blur(0.5px);
+      animation: twinkle 2.7s infinite alternate;
+    }
+    @keyframes twinkle {
+      to {
+        opacity: 0.5;
+        filter: blur(1px);
+      }
+    }
+    @media (max-width: 600px) {
+      .countdown-box { padding: 1.2rem 0.5rem; }
+      h1 { font-size: 1.4rem; }
+      .astro-logo { font-size: 2.2rem; }
+      .countdown-time { font-size: 1.35rem; }
+      .discord-btn { font-size: 1rem; padding: 0.5em 1.3em;}
+      .content-wrapper {padding-top: 3vh; padding-bottom: 5vh;}
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <!-- <img src="logo.png" alt="AstroLaunch Logo" class="logo"/> -->
-    <h1>AstroLaunch.xyz</h1>
-    <p>Coming August 5th, 2025</p>
-    <div id="countdown">
-      <span id="days">00</span>D :
-      <span id="hours">00</span>H :
-      <span id="minutes">00</span>M :
-      <span id="seconds">00</span>S
+  <div class="stars" id="stars"></div>
+  <div class="content-wrapper">
+    <div class="astro-logo">🚀</div>
+    <h1><span class="neon-glow">Space Meme Coin Launchpad</span></h1>
+    <div class="countdown-box">
+      <div class="desc">Launching <span class="neon-glow">August 17th, 2025</span></div>
+      <div class="countdown-time" id="countdown"></div>
+      <div class="desc">The galaxy’s fastest, most futuristic token launch platform.<br>
+        <span class="neon-glow">Get ready for liftoff!</span>
+      </div>
     </div>
-    <a href="https://discord.gg/your-link" target="_blank" class="discord-btn">Join the Waitlist</a>
+    <a class="discord-btn" href="https://discord.gg/bMkx74U5FB" target="_blank" rel="noopener">
+      Join Discord
+    </a>
   </div>
-  <script src="script.js"></script>
+  <script>
+    // Star field (subtle, only at edges)
+    const starContainer = document.getElementById('stars');
+    const numStars = 35;
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      const size = Math.random() * 1.2 + 0.5;
+      let top, left;
+      // Avoid center area: keep stars to corners/edges
+      do {
+        top = Math.random() * 100;
+        left = Math.random() * 100;
+      } while (top > 30 && top < 70 && left > 30 && left < 70);
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.top = `${top}vh`;
+      star.style.left = `${left}vw`;
+      star.style.animationDelay = `${Math.random() * 2.5}s`;
+      starContainer.appendChild(star);
+    }
+    // Countdown
+    function updateCountdown() {
+      const launchDate = new Date(Date.UTC(2025, 8 - 1, 17, 0, 0, 0)); // August 17th, 2025
+      const now = new Date();
+      let diff = launchDate - now;
+      if (diff <= 0) {
+        document.getElementById('countdown').textContent = "🚀 We have launched!";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      diff -= days * (1000 * 60 * 60 * 24);
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      diff -= hours * (1000 * 60 * 60);
+      const mins = Math.floor(diff / (1000 * 60));
+      diff -= mins * (1000 * 60);
+      const secs = Math.floor(diff / 1000);
+      document.getElementById('countdown').textContent =
+        `${days}d ${hours}h ${mins}m ${secs}s`;
+      setTimeout(updateCountdown, 1000);
+    }
+    updateCountdown();
+  </script>
 </body>
 </html>

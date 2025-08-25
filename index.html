@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AstroLaunch.xyz — Countdown</title>
+  <title>AstroLaunch.xyz — Space Meme Coin Launchpad</title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <style>
     html, body {
@@ -45,23 +45,6 @@
       margin-bottom: 1.2rem;
       margin-top: 0;
     }
-    .countdown-box {
-      background: rgba(16,21,42,0.92);
-      border: 2px solid #00eaff33;
-      border-radius: 24px;
-      padding: 2.5rem 3.5rem;
-      text-align: center;
-      box-shadow: 0 0 36px #00eaff33;
-      margin-bottom: 2rem;
-    }
-    .countdown-time {
-      font-size: 2.2rem;
-      color: #50fa7b;
-      text-shadow: 0 0 10px #00eaff99;
-      letter-spacing: 0.12em;
-      margin-top: 1.2rem;
-      margin-bottom: 0.4rem;
-    }
     .neon-glow {
       color: #00eaff;
       text-shadow: 0 0 12px #00eaff99;
@@ -71,6 +54,7 @@
       font-size: 1.14rem;
       margin-bottom: 1.5rem;
       margin-top: 1.2rem;
+      text-align: center;
     }
     .astro-logo {
       font-size: 4.2rem;
@@ -126,12 +110,10 @@
       }
     }
     @media (max-width: 600px) {
-      .countdown-box { padding: 1.2rem 0.5rem; }
+      .content-wrapper { padding-top: 3vh; padding-bottom: 5vh;}
       h1 { font-size: 1.4rem; }
       .astro-logo { font-size: 2.2rem; }
-      .countdown-time { font-size: 1.35rem; }
       .discord-btn { font-size: 1rem; padding: 0.5em 1.3em;}
-      .content-wrapper {padding-top: 3vh; padding-bottom: 5vh;}
     }
   </style>
 </head>
@@ -140,12 +122,9 @@
   <div class="content-wrapper">
     <div class="astro-logo">🚀</div>
     <h1><span class="neon-glow">Space Meme Coin Launchpad</span></h1>
-    <div class="countdown-box">
-      <div class="desc">Launching <span class="neon-glow">August 17th, 2025</span></div>
-      <div class="countdown-time" id="countdown"></div>
-      <div class="desc">The galaxy’s fastest, most futuristic token launch platform.<br>
-        <span class="neon-glow">Get ready for liftoff!</span>
-      </div>
+    <div class="desc">
+      Welcome to AstroLaunch.xyz, the galaxy’s fastest, most futuristic token launch platform.<br>
+      <span class="neon-glow">Get ready for liftoff!</span>
     </div>
     <a class="discord-btn" href="https://discord.gg/bMkx74U5FB" target="_blank" rel="noopener">
       Join Discord
@@ -172,27 +151,6 @@
       star.style.animationDelay = `${Math.random() * 2.5}s`;
       starContainer.appendChild(star);
     }
-    // Countdown
-    function updateCountdown() {
-      const launchDate = new Date(Date.UTC(2025, 8 - 1, 17, 0, 0, 0)); // August 17th, 2025
-      const now = new Date();
-      let diff = launchDate - now;
-      if (diff <= 0) {
-        document.getElementById('countdown').textContent = "🚀 We have launched!";
-        return;
-      }
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      diff -= days * (1000 * 60 * 60 * 24);
-      const hours = Math.floor(diff / (1000 * 60 * 60));
-      diff -= hours * (1000 * 60 * 60);
-      const mins = Math.floor(diff / (1000 * 60));
-      diff -= mins * (1000 * 60);
-      const secs = Math.floor(diff / 1000);
-      document.getElementById('countdown').textContent =
-        `${days}d ${hours}h ${mins}m ${secs}s`;
-      setTimeout(updateCountdown, 1000);
-    }
-    updateCountdown();
   </script>
 </body>
 </html>

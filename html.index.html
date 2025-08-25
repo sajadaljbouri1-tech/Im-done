@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AstroLaunch — Launch tokens in minutes</title>
+  <link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="index.html"><span class="logo"></span>AstroLaunch</a>
+      <a href="trending.html">Trending</a>
+      <a href="create.html">Create</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <button id="theme-toggle" class="btn secondary switch">Theme</button>
+    </div>
+  </header>
+  <main class="main">
+    <div class="container">
+      
+<section class="grid cols-2 hero">
+  <div class="card" style="background:linear-gradient(135deg,rgba(124,92,255,.15),rgba(0,229,255,.1));border-color:transparent">
+    <h1>Launch tokens in minutes.</h1>
+    <p>Multi‑chain creation, transparent fees, liquidity lock, and live charts.</p>
+    <div class="flex" style="margin:14px 0 6px">
+      <a class="btn" href="create.html">Create Token</a>
+      <a class="btn secondary" href="trending.html">Browse Trending</a>
+    </div>
+    <div class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px">
+      <div class="tag">✅ Transparent 1% fee</div>
+      <div class="tag">🔒 Liquidity lock support</div>
+      <div class="tag">🧩 Renounce & Burn</div>
+      <div class="tag">📈 DexScreener embeds</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="kv"><div><strong>Countdown to Launch</strong></div><span class="badge">Aug 7, 2025 (AEST)</span></div>
+    <div class="center" style="height:80px;font-size:26px;font-weight:800"><span id="count-el">—</span></div>
+    <div class="notice">Add a fancier animation later. For now this shows a live countdown.</div>
+    <hr/>
+    <form id="email-form" class="grid" style="grid-template-columns:1fr auto;gap:10px">
+      <input id="email" class="input" placeholder="Enter email for pre‑launch access">
+      <button class="btn" type="submit">Notify me</button>
+    </form>
+  </div>
+</section>
+
+<section style="margin-top:26px" class="grid cols-3">
+  <div class="card">
+    <div class="kv"><div><strong>Featured Today</strong></div><span class="badge">Auto</span></div>
+    <div id="featured-box" class="list"></div>
+  </div>
+  <div class="card">
+    <div class="kv"><div><strong>Editor’s Picks</strong></div><span class="badge">Curated</span></div>
+    <ul class="list" id="editors-list"></ul>
+  </div>
+  <div class="card">
+    <div class="kv"><div><strong>Ad Space</strong></div><span class="badge">Placeholder</span></div>
+    <div class="ad">Your ad here</div>
+  </div>
+</section>
+
+<script>
+  const el = document.getElementById('count-el');
+  initCountdown(el, '2025-08-07T00:00:00+10:00');
+  // Seed featured and picks
+  const items = loadTokens();
+  const featured = items[0];
+  const box = document.getElementById('featured-box');
+  if(featured){
+    box.innerHTML = \`
+      <a class="card token-card" href="token.html?address=\${featured.address}&chain=\${featured.chain}&name=\${encodeURIComponent(featured.name)}&symbol=\${encodeURIComponent(featured.symbol)}">
+        <div class="title">\${featured.name} <span class="small">(\${featured.symbol})</span></div>
+        <div class="meta">\${featured.chain} — \${featured.address.slice(0,10)}…</div>
+      </a>\`;
+  } else {
+    box.innerHTML = '<div class="small">No tokens yet. Create one!</div>';
+  }
+  const editors = document.getElementById('editors-list');
+  const picks = items.slice(1,4);
+  editors.innerHTML = picks.map(t=>\`
+    <li><a class="token-card" href="token.html?address=\${t.address}&chain=\${t.chain}&name=\${encodeURIComponent(t.name)}&symbol=\${encodeURIComponent(t.symbol)}">
+      <div class="title">\${t.name} <span class="small">(\${t.symbol})</span></div>
+      <div class="meta">\${t.chain} — \${t.address.slice(0,10)}…</div>
+    </a></li>\`).join('') || '<li class="small">No picks yet.</li>';
+</script>
+
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container kv">
+      <div>© 2025 AstroLaunch</div>
+      <div>Platform fee: 1.00% (disclosed)</div>
+    </div>
+  </footer>
+  <script src="assets/app.js"></script>
+</body>
+</html>
